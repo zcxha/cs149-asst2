@@ -1,0 +1,557 @@
+==============================================================
+Starting 8 threads to increment counter...
+Final counter value: 80000...
+==============================================================
+==============================================================
+Starting 3 threads for signal-and-waiting...
+signal locks1!
+signal unlock 1!
+after unique lock acquire! 
+Lock re-acquired after wait()... // uncertained
+notified! // uncertained
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+spawned all threads!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+after unique lock acquire!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+signal lock 2!
+signal unlock 1!
+notified!
+Lock re-acquired after wait()...
+signal lock 2!
+signal unlock last!
+==============================================================

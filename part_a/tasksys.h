@@ -47,14 +47,17 @@ public:
 class Queue
 {
 public:
+    std::condition_variable *condition_variable;
     std::mutex *mutex;
     std::queue<int> queue;
     Queue()
     {
-        mutex = new std::mutex;
+        condition_variable = new std::condition_variable();
+        mutex = new std::mutex();
     }
     ~Queue()
     {
+        delete condition_variable;
         delete mutex;
     }
 };
@@ -94,6 +97,13 @@ public:
 class TaskSystemParallelThreadPoolSleeping : public ITaskSystem
 {
 public:
+    std::atomic<bool> stop{false};
+    int num_threads;
+    std::thread* threads;
+    Queue *work_queue;
+    Queue *finish_queue;
+    IRunnable *cur_runnable;
+    int num_total_tasks;
     TaskSystemParallelThreadPoolSleeping(int num_threads);
     ~TaskSystemParallelThreadPoolSleeping();
     const char *name();
@@ -101,6 +111,7 @@ public:
     TaskID runAsyncWithDeps(IRunnable *runnable, int num_total_tasks,
                             const std::vector<TaskID> &deps);
     void sync();
+    void run_per_thread();
 };
 
 #endif

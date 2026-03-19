@@ -568,6 +568,10 @@ TestResults simpleTestAsync(ITaskSystem* t) {
 }
 
 /*
+    一共有400次批处理，200次从input累加计算到output，200次从output累加计算到input
+    所以结果就是input计算400次累加到output，或者output计算400次累加到input
+*/
+/*
  * Computation: pingPongTest launches 400 bulk task launches with 64 tasks each.
  * The computation done by each bulk task launch takes as input a buffer of size
  * `num_elements` as input, performs an elementwise computation, and writes to
@@ -585,10 +589,10 @@ TestResults simpleTestAsync(ITaskSystem* t) {
  * and does O(base_iters) work per element.
  */
 TestResults pingPongTest(ITaskSystem* t, bool equal_work, bool do_async,
-                         int num_elements, int base_iters) {
+                         int num_elements/* 元素数量 */, int base_iters/* 迭代计数 */) {
 
-    int num_tasks = 64;
-    int num_bulk_task_launches = 400;   
+    int num_tasks = 64; // 一批的任务数
+    int num_bulk_task_launches = 400;   // 批量启动
 
     int* input = new int[num_elements];
     int* output = new int[num_elements];

@@ -7,7 +7,7 @@
 #include "tasksys_ref.h"
 #include "tests.h"
 
-#define DEFAULT_NUM_THREADS 8
+#define DEFAULT_NUM_THREADS 4
 #define DEFAULT_NUM_TIMING_ITERATIONS 3
 
 
