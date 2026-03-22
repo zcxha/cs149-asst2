@@ -1,4 +1,11 @@
 {
     "C_Cpp.intelliSenseEngine": "default",
-    "C_Cpp.default.cppStandard": "c++11"
+    "C_Cpp.default.cppStandard": "c++11",
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            "macro": {
+                "foreground": "#77cffc48"
+            }
+        }
+    }
 }

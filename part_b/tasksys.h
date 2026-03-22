@@ -133,7 +133,7 @@ public:
 
     // manage launches
     void update_deps(Work work);
-    void add_launchlet(IRunnable* runnable, int num_total_tasks,
+    TaskID add_launchlet(IRunnable* runnable, int num_total_tasks,
                                                     const std::vector<TaskID>& deps);
     Launch launch;
 

@@ -147,7 +147,7 @@ const char *TaskSystemParallelThreadPoolSleeping::name()
     return "Parallel + Thread Pool + Sleep";
 }
 
-TaskSystemParallelThreadPoolSleeping::TaskSystemParallelThreadPoolSleeping(int num_threads) : ITaskSystem(num_threads)
+TaskSystemParallelThreadPoolSleeping::TaskSystemParallelThreadPoolSleeping(int num_threads) : ITaskSystem(num_threads), num_threads(num_threads)
 {
     threads = new std::thread[num_threads];
 
@@ -192,19 +192,14 @@ void TaskSystemParallelThreadPoolSleeping::run_per_thread()
             {
                 break;
             }
-            std::cerr << __LINE__ << std::endl;
             cur_work = WQ.works.front();
             WQ.works.pop();
             WQ.condition_variable.notify_all();
         }
         
-        std::cerr << __LINE__ << std::endl;
         cur_work.runnable->runTask(cur_work.idx, cur_work.num_total_tasks);
-        std::cerr << __LINE__ << std::endl;
         update_deps(cur_work);
-        std::cerr << __LINE__ << std::endl;
         enqueue();
-        std::cerr << __LINE__ << std::endl;
     }
 }
 
@@ -220,6 +215,7 @@ void TaskSystemParallelThreadPoolSleeping::update_deps(Work work)
     assert(parent->work_remain >= 0);
     if (parent->work_remain > 0)
     {
+        launch.mutex.unlock();
         return;
     }
 
@@ -276,7 +272,7 @@ void TaskSystemParallelThreadPoolSleeping::enqueue()
 // 因为只会传入出现过的TaskID，所以加入一个新的Task时，这个Task还不会被其他人依赖
 // 换句话说
 // 只需要根据传入的deps，更新已有Launch的出度即可
-void TaskSystemParallelThreadPoolSleeping::add_launchlet(IRunnable *runnable, int num_total_tasks,
+TaskID TaskSystemParallelThreadPoolSleeping::add_launchlet(IRunnable *runnable, int num_total_tasks,
                                                          const std::vector<TaskID> &deps)
 {
     pending_tasks++;
@@ -285,10 +281,10 @@ void TaskSystemParallelThreadPoolSleeping::add_launchlet(IRunnable *runnable, in
     int dep_count = deps.size();
     for (TaskID dep_task : deps)
     {
-        Launchlet Llet = launch.llet[dep_task];
-        Llet.outd.push_back(tid);
+        Launchlet* Llet = &launch.llet[dep_task];
+        Llet->outd.push_back(tid);
 
-        if (Llet.status == Finished)
+        if (Llet->status == Finished)
         {
             dep_count--;
         }
@@ -296,30 +292,28 @@ void TaskSystemParallelThreadPoolSleeping::add_launchlet(IRunnable *runnable, in
     assert(dep_count >= 0);
     launch.llet.push_back(Launchlet(tid, runnable, num_total_tasks, dep_count, {}));
     launch.mutex.unlock();
+    return tid;
 }
 
 TaskID TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps(IRunnable *runnable, int num_total_tasks,
                                                               const std::vector<TaskID> &deps)
 {
-    add_launchlet(runnable, num_total_tasks, deps);
-    std::cerr << __LINE__ << std::endl;
+    TaskID tid = add_launchlet(runnable, num_total_tasks, deps);
     enqueue();
-    std::cerr << __LINE__ << std::endl;
-    return 0;
+    return tid;
 }
 
 void TaskSystemParallelThreadPoolSleeping::sync()
 {
-    std::cerr << __LINE__ << std::endl;
     std::unique_lock<std::mutex> lk(sync_mutex);
     if (pending_tasks != 0)
     {
-        std::cerr << __LINE__ << std::endl;
         sync_cv.wait(lk, [&]
                      { return pending_tasks == 0; });
     }
-    std::cerr << __LINE__ << std::endl;
     assert(WQ.works.empty());
+    launch.mutex.lock();
     launch.llet.clear();
+    launch.mutex.unlock();
     return;
 }
