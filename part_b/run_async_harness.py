@@ -13,8 +13,7 @@ NUM_TEST_RUNS = 3
 PERF_THRESHOLD = 1.5
 TIMEOUT_SECS = 120
 
-ASYNC_TESTS = [
-    "simple_test_async",
+ASYNC_TIMING_TESTS = [
     "ping_pong_equal_async",
     "ping_pong_unequal_async",
     "super_light_async",
@@ -26,6 +25,10 @@ ASYNC_TESTS = [
     "math_operations_in_tight_for_loop_reduction_tree_async",
     "mandelbrot_chunked_async",
     "spin_between_run_calls_async",
+]
+
+ASYNC_CORRECTNESS_ONLY_TESTS = [
+    "simple_test_async",
     "simple_run_deps_test",
     "strict_diamond_deps_async",
     "strict_graph_deps_small_async",
@@ -130,7 +133,7 @@ def main() -> int:
         "-t",
         "--tests",
         nargs="+",
-        default=ASYNC_TESTS,
+        default=ASYNC_TIMING_TESTS,
         help="Subset of async tests to run",
     )
     parser.add_argument(
@@ -152,14 +155,25 @@ def main() -> int:
         help="Do not compare against reference binary",
     )
     parser.add_argument(
+        "--include-correctness-only",
+        action="store_true",
+        help="Also include async correctness/debug tests that the reference binary may not support",
+    )
+    parser.add_argument(
         "--all-impls",
         action="store_true",
         help="Print all implementations instead of only Parallel + Thread Pool + Sleep",
     )
     args = parser.parse_args()
 
+    selected_tests = list(args.tests)
+    if args.include_correctness_only:
+        for test_name in ASYNC_CORRECTNESS_ONLY_TESTS:
+            if test_name not in selected_tests:
+                selected_tests.append(test_name)
+
     print("======================================================================")
-    print(f"Running async-only harness... ({len(args.tests)} total tests)")
+    print(f"Running async-only harness... ({len(selected_tests)} total tests)")
     print(f"  - Task system configured to use at most {args.num_threads} threads")
     print(f"  - Repeats per test: {args.runs}")
     print("======================================================================")
@@ -171,13 +185,14 @@ def main() -> int:
 
     all_ok = True
 
-    for test_name in args.tests:
+    for test_name in selected_tests:
         print("======================================================================")
         print(f"Executing test: {test_name}")
 
         collected: dict[str, list[float]] = {}
         commands = [([str(student_bin), "-n", str(args.num_threads), "-i", "1", test_name], False)]
-        if not args.student_only:
+        reference_supported = test_name not in ASYNC_CORRECTNESS_ONLY_TESTS
+        if not args.student_only and reference_supported:
             commands.insert(0, ([str(ref_bin), "-n", str(args.num_threads), "-i", "1", test_name], True))
 
         for _ in range(args.runs):
@@ -191,8 +206,10 @@ def main() -> int:
 
         mins = {key: min(values) for key, values in collected.items() if values}
 
-        if args.student_only:
+        if args.student_only or not reference_supported:
             print(f"Results for: {test_name}")
+            if not args.student_only and not reference_supported:
+                print("Reference: skipped for this test (not supported by reference binary)")
             impls = IMPLEMENTATIONS if args.all_impls else ["[Parallel + Thread Pool + Sleep]"]
             for impl in impls:
                 key = f"STUDENT {impl}"
